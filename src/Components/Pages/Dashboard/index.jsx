@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import MessageTable from './Components/MessageTable';
 
-class Posts extends React.Component {
+class Dashboard extends React.Component {
     render() {
         return (
             <Fragment>
@@ -11,4 +11,4 @@ class Posts extends React.Component {
     }
 }
 
-export default Posts;
+export default Dashboard;

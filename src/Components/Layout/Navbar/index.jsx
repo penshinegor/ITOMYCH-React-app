@@ -19,7 +19,7 @@ class Navbar extends React.Component {
                                     to="/"
                                     exact="true"
                                 >
-                                    Главная
+                                    Login
                                 </NavLink>
                             </li>
 
@@ -28,7 +28,7 @@ class Navbar extends React.Component {
                                 className="nav-link" 
                                 to="/posts"
                             >
-                                Сообщения
+                                Dashboard
                             </NavLink>
                             </li>
                         </ul>

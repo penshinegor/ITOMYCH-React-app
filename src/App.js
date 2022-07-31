@@ -1,7 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";  
 import Navbar from "./Components/Layout/Navbar";
-import Home from "./Components/Pages/Home/";
-import Posts from "./Components/Pages/Messages";
+import Login from "./Components/Pages/Login";
+import Dashboard from "./Components/Pages/Dashboard";
 
 function App() {
   return (
@@ -9,8 +9,8 @@ function App() {
       <Navbar />
       <div className="container pt-4">
         <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/posts' element={<Posts />}/>
+          <Route path='/' element={<Login />}/>
+          <Route path='/posts' element={<Dashboard />}/>
         </Routes>
       </div>
     </BrowserRouter>
