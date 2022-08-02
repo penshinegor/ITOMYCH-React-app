@@ -49,8 +49,9 @@ const UserPosts = () => {
             <>
                 {post && (
                     <>
-                        <h1 className="text-center mt-5 mb-5">{post.title}</h1>
+                        <h1 className="text-center mt-4 mb-4">{post.title}</h1>
                         <p className="text-center">{post.body}</p>
+                        <button onClick={goBack} className="d-block mx-auto w-25 btn btn-lg btn-primary mt-4">Back to dashboard</button>
                         <img src={logoPost} alt="" className="mx-auto d-block mt-3"/>
                     </>
                 )}
