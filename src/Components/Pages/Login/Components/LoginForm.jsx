@@ -1,14 +1,8 @@
 import React from "react";
 import mops from "../../../Images/logo.svg";
 import { Form, Field } from "formik";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({errors, touched, isValid, dirty}) => {
-
-    const navigate = useNavigate();
-
-    const goDashboard = () => navigate("/dashboard");
-        
     return(
         <Form noValidate>
             <img className="mb-4" src={mops} alt="" width="72" height="57"/>
@@ -32,7 +26,7 @@ const LoginForm = ({errors, touched, isValid, dirty}) => {
                 </label>
             </div>
                         
-            <button onClick={goDashboard} className="w-100 btn btn-lg btn-primary" type="submit" disabled={!isValid || !dirty}>Login</button>  
+            <button className="w-100 btn btn-lg btn-primary" type="submit" disabled={!isValid || !dirty}>Login</button>
 
             <p className="mt-5 mb-3 text-muted">&copy; React App</p>
         </Form>

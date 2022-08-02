@@ -33,7 +33,7 @@ class MessageTable extends React.Component {
 
     render() {
         if(this.state.error) {
-            return <p>Something went wrong...</p>
+            return <p>Erorr {this.state.error.message}</p>
         } else if(!this.state.isLoaded){
             return <p>Loading...</p>
         } else {

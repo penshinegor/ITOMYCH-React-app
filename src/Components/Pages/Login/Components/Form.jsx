@@ -23,6 +23,9 @@ const Form = () => {
                         password: ''
                     }}
                     validationSchema={validate}
+                    onSubmit={(value) => {
+                        console.log(`Email: ${value.email}\nPassword: ${value.password}`);
+                    }}
                     component={LoginForm}
                 />
             </div>
