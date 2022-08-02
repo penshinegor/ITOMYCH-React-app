@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import mops from "../../Images/logo.svg"
 
 class Navbar extends React.Component {
@@ -10,28 +9,6 @@ class Navbar extends React.Component {
                     <div className="navbar-brand">
                         <img src={mops} alt="" width="30" height="28" className="d-inline-block align-text-top"/>
                         React App
-                    </div>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <NavLink 
-                                    className="nav-link" 
-                                    to="/"
-                                    exact="true"
-                                >
-                                    Login
-                                </NavLink>
-                            </li>
-
-                            <li className="nav-item">
-                            <NavLink 
-                                className="nav-link" 
-                                to="/posts"
-                            >
-                                Dashboard
-                            </NavLink>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </nav>

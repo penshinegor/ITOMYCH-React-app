@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import './styles.scss';
 
 class Messages extends React.Component {
-
     render() {
         return(
             <table className="table caption-top">
@@ -19,9 +20,16 @@ class Messages extends React.Component {
                             <th scope="row" key={item.id}>
                                 {item.id}
                             </th>
-                            <td key={item.title}>
-                                {item.title}
+
+                            <td>
+                                <Link className="userLink text-dark" key={item.id} to={`/dashboard/${item.id}`}>
+                                    <td key={item.title}>
+                                        {item.title}
+                                    </td>
+                                </Link>
                             </td>
+                            
+                            
                             <td key={item.body}>
                                 {item.body}
                             </td>
