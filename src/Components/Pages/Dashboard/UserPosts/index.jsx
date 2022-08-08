@@ -1,30 +1,22 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import logoPost from "../../../Images/logoPosts.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { userPostsFetchData } from "../../../Store/Thunks/UserPostFetchThunk";
+
 
 const UserPosts = () => {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [error, setError] = useState(false);
-  const [isLoad, setIsLoad] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.userPostRequestReducer);
+  const { loading } = useSelector((state) => state.userPostRequestReducer);
+  const { items } = useSelector((state) => state.userPostRequestReducer);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then((response) => {
-        if (id > 10 || undefined) {
-          setError(true);
-          setIsLoad(true);
-        } else if (response.ok) {
-          setIsLoad(true);
-          return response.json();
-        } else {
-          setError(true);
-          setIsLoad(true);
-        }
-      })
-      .then((data) => setPost(data));
-  }, [id]);
+    dispatch(userPostsFetchData(id))
+  }, [dispatch])
+
 
   const goBack = () => {
     return navigate("/dashboard");
@@ -45,15 +37,15 @@ const UserPosts = () => {
         <img src={logoPost} alt="" className="mx-auto d-block mt-3" />
       </>
     );
-  } else if (!isLoad) {
+  } else if (loading) {
     return <p className="text-center">Loading...</p>;
   } else {
     return (
       <>
-        {post && (
+        {items && (
           <>
-            <h1 className="text-center mt-4 mb-4">{post.title}</h1>
-            <p className="text-center">{post.body}</p>
+            <h1 className="text-center mt-4 mb-4">{items.title}</h1>
+            <p className="text-center">{items.body}</p>
             <button
               onClick={goBack}
               className="d-block mx-auto w-25 btn btn-lg btn-primary mt-4"

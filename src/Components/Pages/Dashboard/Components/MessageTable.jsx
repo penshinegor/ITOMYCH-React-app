@@ -1,45 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postsFetchData } from "../../../Store/Thunks/PostsFetchThunk";
 import Messages from "./Messages";
 
-class MessageTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: [],
-    };
-  }
+const MessageTable = () => {
+  const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.postRequestReducer);
+  const { loading } = useSelector((state) => state.postRequestReducer);
+  const { items } = useSelector((state) => state.postRequestReducer);
 
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => data.splice(0, 10))
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
-  }
+  useEffect(() => {
+    dispatch(postsFetchData());
+  }, [dispatch]);
 
-  render() {
-    if (this.state.error) {
-      return <p>Something went wrong...</p>;
-    } else if (!this.state.isLoaded) {
-      return <p>Loading...</p>;
-    } else {
-      return <Messages items={this.state.items} />;
-    }
+  if (error) {
+    return <p>Something went wrong...</p>;
+  } else if (loading) {
+    return <p>Loading...</p>;
+  } else {
+    return <Messages items={items} />;
   }
-}
+};
 
 export default MessageTable;

@@ -1,10 +1,11 @@
 import { Formik } from "formik";
-import React, { useContext } from "react";
+import React from "react";
 import "../styles.scss";
 import * as yup from "yup";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
-import EmailContext from "../../../Context";
+import { useDispatch } from "react-redux";
+import { loginEmail } from "../../../Store/Actions/LoginEmailAction";
 
 const regularEmail =
   /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -22,10 +23,10 @@ const Form = () => {
       .required("Password is required"),
   });
 
-  const [emailInfo, setEmailInfo] = useContext(EmailContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const goDashboard = (values) => {
-    setEmailInfo(values.email);
+    dispatch(loginEmail(values.email))
     navigate("/dashboard");
   };
 

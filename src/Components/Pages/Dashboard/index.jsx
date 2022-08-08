@@ -1,15 +1,16 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import MessageTable from "./Components/MessageTable";
 import { Link } from "react-router-dom";
-import EmailContext from "../../Context";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const [emailInfo, setEmailInfo] = useContext(EmailContext);
+  
+  const { email } = useSelector((state => state.loginEmailReducer))
 
   return (
     <Fragment>
       <header>
-        <p className="text-center">{emailInfo}</p>
+        <p className="text-center">{email}</p>
         <Link to="/" className="d-block mx-auto w-25 btn btn-lg btn-primary">
           Logout
         </Link>
